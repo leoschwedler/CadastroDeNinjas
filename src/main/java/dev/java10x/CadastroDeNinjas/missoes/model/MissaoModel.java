@@ -2,11 +2,15 @@ package dev.java10x.CadastroDeNinjas.missoes.model;
 
 import dev.java10x.CadastroDeNinjas.ninjas.model.NinjaModel;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tb_missoes")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class MissaoModel {
 
     @Id
@@ -17,30 +21,5 @@ public class MissaoModel {
     @OneToMany(mappedBy = "missoes")
     private List<NinjaModel> ninjas;
 
-    public MissaoModel(String name, String dificulty, List<NinjaModel> ninjas) {
-        this.name = name;
-        this.dificulty = dificulty;
-        this.ninjas = ninjas;
-    }
 
-    public MissaoModel() {
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDificulty() {
-        return dificulty;
-    }
-
-    public void setDificulty(String dificulty) {
-        dificulty = dificulty;
-    }
 }
