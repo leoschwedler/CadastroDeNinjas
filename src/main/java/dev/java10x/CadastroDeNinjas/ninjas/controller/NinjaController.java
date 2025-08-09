@@ -30,7 +30,7 @@ public class NinjaController {
     }
 
     // MOSTRAR NINJA POR ID
-    @GetMapping("allById/{id}")
+    @GetMapping("showById/{id}")
     public Optional<NinjaModel> showNinjaById(@PathVariable Long id){
         return ninjaService.showNinjaById(id);
     }
