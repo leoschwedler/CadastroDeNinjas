@@ -1,42 +1,48 @@
 package dev.java10x.CadastroDeNinjas.ninjas.controller;
 
+import dev.java10x.CadastroDeNinjas.ninjas.model.NinjaModel;
+import dev.java10x.CadastroDeNinjas.ninjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping
+import java.util.List;
+import java.util.Optional;
+
+@RequestMapping("ninjas/")
 @RestController
 public class NinjaController {
 
-    @GetMapping("/boasvindas")
-    public String boasVindas() {
-        return "Esse é a minha primeira rota em SpringBoot";
+    private NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
     }
 
     // ADICIONAR NINJA (CREATE)
-    @PostMapping("/create")
+    @PostMapping("create")
     public String criarNinja(){
         return "Ninja Criado";
     }
 
     // MOSTRAR TODOS OS NINJAS (READ)
-    @GetMapping("/all")
-    public String mostrarNinjas(){
-        return "Mostrar ninja";
+    @GetMapping("all")
+    public List<NinjaModel> showAllNinjas(){
+        return ninjaService.showAllNinjas();
     }
 
     // MOSTRAR NINJA POR ID
-    @GetMapping("/allById")
-    public String mostrarNinjasPorId(){
-        return "Mostrar Ninja por ID";
+    @GetMapping("allById/{id}")
+    public Optional<NinjaModel> showNinjaById(@PathVariable Long id){
+        return ninjaService.showNinjaById(id);
     }
 
     // EDITAR NINJA POR ID
-    @PutMapping("/editById")
+    @PutMapping("editById")
     public String editNinjaPorId(){
         return "Alterar Ninja por ID";
     }
 
     // DELETAR NINJA POR ID
-    @DeleteMapping("/deleteById")
+    @DeleteMapping("deleteById")
     public String deleteNinjaPorId(){
         return "Ninja deeletado por ID";
     }
