@@ -25,15 +25,19 @@ public class NinjaService {
         return ninjaRepository.findById(id);
     }
 
-    public NinjaModel insertNinja(NinjaModel ninjaModel){
-        return ninjaRepository.save(ninjaModel);
+    public NinjaModel insertNinja(NinjaModel ninja) {
+        return ninjaRepository.save(ninja);
     }
 
-    public void deleteNinja(Long id){
-         ninjaRepository.deleteById(id);
+    public void deleteNinja(Long id) {
+        ninjaRepository.deleteById(id);
     }
 
-    public void updateNinja(Long id){
-
+    public NinjaModel updateNinja(NinjaModel ninja, Long id) {
+        if (ninjaRepository.existsById(id)) {
+            return ninjaRepository.save(ninja);
+        } else {
+            return null;
+        }
     }
 }
