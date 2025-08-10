@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("ninjas/")
+@RequestMapping("ninjas")
 @RestController
 public class NinjaController {
 
@@ -42,10 +42,12 @@ public class NinjaController {
     }
 
     // DELETAR NINJA POR ID
-    @DeleteMapping("deleteById")
-    public String deleteNinjaPorId(){
-        return "Ninja deeletado por ID";
+    @DeleteMapping("deleteById/{id}")
+    public void deleteNinja(@PathVariable Long id){
+        ninjaService.deleteNinja(id);
     }
+
+
 
 
 
