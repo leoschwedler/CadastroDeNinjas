@@ -24,4 +24,8 @@ public class NinjaService {
     public Optional<NinjaModel> showNinjaById(Long id) {
         return ninjaRepository.findById(id);
     }
+
+    public NinjaModel insertNinja(NinjaModel ninjaModel){
+        return ninjaRepository.save(ninjaModel);
+    }
 }
