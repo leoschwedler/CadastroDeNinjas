@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.ninjas.controller;
 
+import dev.java10x.CadastroDeNinjas.ninjas.dto.NinjaDto;
 import dev.java10x.CadastroDeNinjas.ninjas.model.NinjaModel;
 import dev.java10x.CadastroDeNinjas.ninjas.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
@@ -19,26 +20,26 @@ public class NinjaController {
 
     // ADICIONAR NINJA (CREATE)
     @PostMapping("insert")
-    public NinjaModel insertNinja(@RequestBody NinjaModel ninjaModel) {
-        return ninjaService.insertNinja(ninjaModel);
+    public NinjaDto insertNinja(@RequestBody NinjaDto ninjaDto) {
+        return ninjaService.insertNinja(ninjaDto);
     }
 
     // MOSTRAR TODOS OS NINJAS (READ)
     @GetMapping("all")
-    public List<NinjaModel> showAllNinjas() {
+    public List<NinjaDto> showAllNinjas() {
         return ninjaService.showAllNinjas();
     }
 
     // MOSTRAR NINJA POR ID
     @GetMapping("showById/{id}")
-    public Optional<NinjaModel> showNinjaById(@PathVariable Long id) {
+    public NinjaDto showNinjaById(@PathVariable Long id) {
         return ninjaService.showNinjaById(id);
     }
 
     // EDITAR NINJA POR ID
     @PutMapping("editById/{id}")
-    public NinjaModel editNinjaPorId(@PathVariable Long id, @RequestBody NinjaModel ninjaModel) {
-        return ninjaService.updateNinja(ninjaModel, id);
+    public NinjaDto editNinjaPorId(@PathVariable Long id, @RequestBody NinjaDto ninjaDto) {
+        return ninjaService.updateNinja(ninjaDto, id);
     }
 
     // DELETAR NINJA POR ID
