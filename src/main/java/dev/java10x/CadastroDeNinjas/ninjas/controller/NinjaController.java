@@ -14,13 +14,13 @@ import java.util.Optional;
 @RestController
 public class NinjaController {
 
-    private NinjaService ninjaService;
+    private final NinjaService ninjaService;
 
     public NinjaController(NinjaService ninjaService) {
         this.ninjaService = ninjaService;
     }
 
-    // ADICIONAR NINJA (CREATE)
+
     @PostMapping("insert")
     public ResponseEntity<String> insertNinja(@RequestBody NinjaDto ninjaDto) {
         NinjaDto ninja = ninjaService.insertNinja(ninjaDto);
@@ -28,14 +28,14 @@ public class NinjaController {
                 .body("Ninja criado com sucesso: " + ninja.getName() + " Com o id: " + ninja.getId());
     }
 
-    // MOSTRAR TODOS OS NINJAS (READ)
+
     @GetMapping("all")
     public ResponseEntity<List<NinjaDto>> showAllNinjas() {
         List<NinjaDto> ninjas = ninjaService.showAllNinjas();
         return ResponseEntity.ok(ninjas);
     }
 
-    // MOSTRAR NINJA POR ID
+
     @GetMapping("showById/{id}")
     public ResponseEntity<?> showNinjaById(@PathVariable Long id) {
         NinjaDto ninja = ninjaService.showNinjaById(id);
@@ -47,7 +47,7 @@ public class NinjaController {
         }
     }
 
-    // EDITAR NINJA POR ID
+
     @PutMapping("editById/{id}")
     public ResponseEntity<?> editNinjaPorId(@PathVariable Long id, @RequestBody NinjaDto ninjaDto) {
         NinjaDto ninja = ninjaService.updateNinja(ninjaDto, id);
@@ -58,7 +58,7 @@ public class NinjaController {
         }
     }
 
-    // DELETAR NINJA POR ID
+
     @DeleteMapping("deleteById/{id}")
     public ResponseEntity<String> deleteNinja(@PathVariable Long id) {
         if (ninjaService.showNinjaById(id) != null){

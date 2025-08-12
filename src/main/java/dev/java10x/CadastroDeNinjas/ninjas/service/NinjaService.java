@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Service
 public class NinjaService {
 
-    private NinjaRepository ninjaRepository;
-    private NinjaMapper ninjaMapper;
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
 
 
     public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
@@ -46,7 +46,7 @@ public class NinjaService {
 
     public NinjaDto updateNinja(NinjaDto ninjaDto, Long id) {
         Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
-        if (ninjaExistente.isPresent()){
+        if (ninjaExistente.isPresent()) {
             NinjaModel ninjaModel = ninjaMapper.map(ninjaDto);
             ninjaModel.setId(id);
             NinjaModel ninjaSalvo = ninjaRepository.save(ninjaModel);
