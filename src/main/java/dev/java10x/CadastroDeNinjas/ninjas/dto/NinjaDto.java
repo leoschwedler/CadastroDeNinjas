@@ -20,7 +20,7 @@ public class NinjaDto {
 
     private String rank;
 
-    private String imrUrl;
+    private String imgUrl;
 
     private MissoesModel missoes;
 
